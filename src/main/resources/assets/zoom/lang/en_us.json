@@ -1,0 +1,10 @@
+{
+  "zoom.show_fps": "Show Fps",
+  "zoom.show_fps_desc": "Display Fps on the left corner of the screen",
+  "zoom.show_coord": "Show Coordination",
+  "zoom.show_coord_desc": "Display Coordination[x, y, z] on the left corner of the screen",
+  "zoom.zoom_speed": "Zoom Speed",
+  "zoom.zoom_speed_desc": "Press V to Zoom",
+  "zoom.zoom_key": "Zoom Key",
+  "zoom.zoom_key_desc": "Change the Key Input of Zoom Key"
+}

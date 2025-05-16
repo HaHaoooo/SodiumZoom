@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "zoom",
+  "version": "${version}",
+  "name": "Zoom",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.haha.zoom.client.ZoomClient"
+    ],
+    "main": [
+      "com.haha.zoom.Zoom"
+    ]
+  },
+  "mixins": [
+    "zoom.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "fabric": "*",
+    "minecraft": "1.21.5"
+  },
+  "suggests": {
+    "sodium": "*"
+  }
+}
