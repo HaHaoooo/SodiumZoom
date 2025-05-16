@@ -12,6 +12,6 @@ public class Zoom implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        HudLayerRegistrationCallback.EVENT.register((registrar) -> registrar.addLayer(IdentifiedLayer.of(Identifier.of("hud"), new InfoHud())));
+        HudLayerRegistrationCallback.EVENT.register((registrar) -> registrar.addLayer(IdentifiedLayer.of(Identifier.of(MOD_ID, "info_hud"), new InfoHud())));
     }
 }
