@@ -1,5 +1,6 @@
 package com.haha.zoom.client.hud;
 
+import com.haha.zoom.Zoom;
 import com.haha.zoom.client.gui.ZoomOptionPage;
 import net.fabricmc.fabric.api.client.rendering.v1.IdentifiedLayer;
 import net.minecraft.client.MinecraftClient;
