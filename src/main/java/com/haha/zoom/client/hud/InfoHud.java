@@ -15,7 +15,7 @@ public class InfoHud implements IdentifiedLayer {
     public static Color COLOR = Color.CYAN;
     @Override
     public Identifier id() {
-        return Identifier.of("fps");
+        return Identifier.of(Zoom.MOD_ID, "info_hud");
     }
 
     @Override
