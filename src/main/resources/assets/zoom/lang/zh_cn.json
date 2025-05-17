@@ -3,6 +3,8 @@
   "zoom.show_fps_desc": "在屏幕左上角显示Fps",
   "zoom.show_coord": "显示坐标",
   "zoom.show_coord_desc": "在屏幕左上角显示坐标[x, y, z]",
+  "zoom.better_chat": "更好的聊天界面",
+  "zoom.better_chat_desc": "移除了聊天背景，添加了聊天动画",
   "zoom.zoom_speed": "缩放速度",
   "zoom.zoom_speed_desc": "按V键进行缩放",
   "zoom.zoom_key": "缩放键",

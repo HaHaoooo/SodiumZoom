@@ -15,8 +15,8 @@ public class ColorControl implements Control<Color> {
     private final Option<Color> option;
 
     public static final List<Color> COLORS = List.of(
-            Color.CYAN,
             Color.WHITE,
+            Color.CYAN,
             Color.ORANGE,
             Color.MAGENTA,
             Color.PINK

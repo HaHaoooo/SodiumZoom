@@ -49,6 +49,17 @@ public class ZoomOptionPage {
                         .build()
         );
         groups.add(OptionGroup.createBuilder().add(
+                                OptionImpl.createBuilder(boolean.class, new ZoomStorage())
+                                        .setName(Text.translatable(Identifier.of(Zoom.MOD_ID, "better_chat").toTranslationKey()))
+                                        .setTooltip(Text.translatable(Identifier.of(Zoom.MOD_ID, "better_chat_desc").toTranslationKey()))
+                                        .setEnabled(() -> true)
+                                        .setControl(TickBoxControl::new)
+                                        .setBinding((opts, value) -> storage.getData().useBetterChat = value, opts -> storage.getData().useBetterChat)
+                                        .build()
+                        )
+                        .build()
+        );
+        groups.add(OptionGroup.createBuilder().add(
                                 OptionImpl.createBuilder(float.class, new ZoomStorage())
                                         .setName(Text.translatable(Identifier.of(Zoom.MOD_ID, "zoom_speed").toTranslationKey()))
                                         .setTooltip(Text.translatable(Identifier.of(Zoom.MOD_ID, "zoom_speed_desc").toTranslationKey()))

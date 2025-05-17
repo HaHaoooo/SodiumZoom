@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "Zoom",
   "description": "",
-  "authors": [],
+  "authors": ["haha"],
   "contact": {},
   "license": "MIT",
   "environment": "*",

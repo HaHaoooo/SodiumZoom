@@ -13,7 +13,8 @@ import java.awt.*;
 
 public class InfoHud implements IdentifiedLayer {
 
-    public static Color COLOR = Color.CYAN;
+    public static Color COLOR = Color.WHITE;
+
     @Override
     public Identifier id() {
         return Identifier.of(Zoom.MOD_ID, "info_hud");
@@ -23,7 +24,7 @@ public class InfoHud implements IdentifiedLayer {
     public void render(DrawContext context, RenderTickCounter tickCounter) {
         MinecraftClient client = MinecraftClient.getInstance();
 
-        if (client.player == null || client.options.hudHidden) return;
+        if (client.player == null || client.options.hudHidden || client.getDebugHud().shouldShowDebugHud()) return;
 
         int y = 2;
         int space = 10;
