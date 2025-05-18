@@ -1,12 +1,14 @@
 {
   "zoom.show_fps": "Show Fps",
-  "zoom.show_fps_desc": "Display Fps on the left corner of the screen",
+  "zoom.show_fps.desc": "Display Fps on the left corner of the screen",
   "zoom.show_coord": "Show Coordination",
-  "zoom.show_coord_desc": "Display Coordination[x, y, z] on the left corner of the screen",
+  "zoom.show_coord.desc": "Display Coordination[x, y, z] on the left corner of the screen",
   "zoom.better_chat": "Better Chat",
-  "zoom.better_chat_desc": "Remove the background, and add animation for the chat",
+  "zoom.better_chat.desc": "Remove the background, and add animation for the chat",
+  "zoom.full_bright": "Full Bright",
+  "zoom.full_bright.desc": "Make Minecraft bright all the time",
   "zoom.zoom_speed": "Zoom Speed",
-  "zoom.zoom_speed_desc": "Press V to Zoom",
+  "zoom.zoom_speed.desc": "Press V to Zoom",
   "zoom.zoom_key": "Zoom Key",
-  "zoom.zoom_key_desc": "Change the Key Input of Zoom Key"
+  "zoom.zoom_key.desc": "Change the Key Input of Zoom Key"
 }

@@ -28,8 +28,8 @@ public class ZoomOptionPage {
         List<OptionGroup> groups = new ArrayList<>();
         groups.add(OptionGroup.createBuilder().add(
                                 OptionImpl.createBuilder(boolean.class, new ZoomStorage())
-                                        .setName(Text.translatable(Identifier.of(Zoom.MOD_ID, "show_fps").toTranslationKey()))
-                                        .setTooltip(Text.translatable(Identifier.of(Zoom.MOD_ID, "show_fps_desc").toTranslationKey()))
+                                        .setName(getName("show_fps"))
+                                        .setTooltip(getToolTip("show_fps"))
                                         .setEnabled(() -> true)
                                         .setControl(TickBoxControl::new)
                                         .setBinding((opts, value) -> storage.getData().showFps = value, opts -> storage.getData().showFps)
@@ -39,8 +39,8 @@ public class ZoomOptionPage {
         );
         groups.add(OptionGroup.createBuilder().add(
                                 OptionImpl.createBuilder(boolean.class, new ZoomStorage())
-                                        .setName(Text.translatable(Identifier.of(Zoom.MOD_ID, "show_coord").toTranslationKey()))
-                                        .setTooltip(Text.translatable(Identifier.of(Zoom.MOD_ID, "show_coord_desc").toTranslationKey()))
+                                        .setName(getName("show_coord"))
+                                        .setTooltip(getToolTip("show_coord"))
                                         .setEnabled(() -> true)
                                         .setControl(TickBoxControl::new)
                                         .setBinding((opts, value) -> storage.getData().showCoordinate = value, opts -> storage.getData().showCoordinate)
@@ -50,8 +50,8 @@ public class ZoomOptionPage {
         );
         groups.add(OptionGroup.createBuilder().add(
                                 OptionImpl.createBuilder(boolean.class, new ZoomStorage())
-                                        .setName(Text.translatable(Identifier.of(Zoom.MOD_ID, "better_chat").toTranslationKey()))
-                                        .setTooltip(Text.translatable(Identifier.of(Zoom.MOD_ID, "better_chat_desc").toTranslationKey()))
+                                        .setName(getName("better_chat"))
+                                        .setTooltip(getToolTip("better_chat"))
                                         .setEnabled(() -> true)
                                         .setControl(TickBoxControl::new)
                                         .setBinding((opts, value) -> storage.getData().useBetterChat = value, opts -> storage.getData().useBetterChat)
@@ -60,9 +60,20 @@ public class ZoomOptionPage {
                         .build()
         );
         groups.add(OptionGroup.createBuilder().add(
+                                OptionImpl.createBuilder(boolean.class, new ZoomStorage())
+                                        .setName(getName("full_bright"))
+                                        .setTooltip(getToolTip("full_bright"))
+                                        .setEnabled(() -> true)
+                                        .setControl(TickBoxControl::new)
+                                        .setBinding((opts, value) -> storage.getData().fullBright = value, opts -> storage.getData().fullBright)
+                                        .build()
+                        )
+                        .build()
+        );
+        groups.add(OptionGroup.createBuilder().add(
                                 OptionImpl.createBuilder(float.class, new ZoomStorage())
-                                        .setName(Text.translatable(Identifier.of(Zoom.MOD_ID, "zoom_speed").toTranslationKey()))
-                                        .setTooltip(Text.translatable(Identifier.of(Zoom.MOD_ID, "zoom_speed_desc").toTranslationKey()))
+                                        .setName(getName("zoom_speed"))
+                                        .setTooltip(getToolTip("zoom_speed"))
                                         .setEnabled(() -> true)
                                         .setControl(FloatSliderControl::new)
                                         .setBinding((opt, value) -> storage.getData().zoomSpeed = value, opt -> storage.getData().zoomSpeed)
@@ -73,8 +84,8 @@ public class ZoomOptionPage {
 
         groups.add(OptionGroup.createBuilder().add(
                                 OptionImpl.createBuilder(KeyBinding.class, new ZoomStorage())
-                                        .setName(Text.translatable(Identifier.of(Zoom.MOD_ID, "zoom_key").toTranslationKey()))
-                                        .setTooltip(Text.translatable(Identifier.of(Zoom.MOD_ID, "zoom_key_desc").toTranslationKey()))
+                                        .setName(getName("zoom_key"))
+                                        .setTooltip(getToolTip("zoom_key"))
                                         .setEnabled(() -> true)
                                         .setControl(KeyBindControl::new)
                                         .setBinding(new OptionBinding<>() {
@@ -95,8 +106,8 @@ public class ZoomOptionPage {
 
         groups.add(OptionGroup.createBuilder().add(
                                 OptionImpl.createBuilder(Color.class, new ZoomStorage())
-                                        .setName(Text.translatable(Identifier.of(Zoom.MOD_ID, "color").toTranslationKey()))
-                                        .setTooltip(Text.translatable(Identifier.of(Zoom.MOD_ID, "color_desc").toTranslationKey()))
+                                        .setName(getName("color"))
+                                        .setTooltip(getToolTip("color"))
                                         .setEnabled(() -> true)
                                         .setControl(ColorControl::new)
                                         .setBinding(new OptionBinding<>() {
@@ -116,6 +127,14 @@ public class ZoomOptionPage {
         );
 
         return new OptionPage(Text.literal("Zoom"), ImmutableList.copyOf(groups));
+    }
+
+    private static Text getName(String name){
+        return Text.translatable(Identifier.of(Zoom.MOD_ID, name).toTranslationKey());
+    }
+
+    private static Text getToolTip(String name){
+        return Text.translatable(Identifier.of(Zoom.MOD_ID, name + ".desc").toTranslationKey());
     }
 }
 

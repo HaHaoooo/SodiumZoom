@@ -12,7 +12,7 @@ public class ZoomManager {
             GLFW.GLFW_KEY_V,
             "category.haha"
     );
-    public static final float TARGET = 30f;
+    public static final float TARGET = 22f;
     public static final float BASE = 70f; // 70为原版基础FOV
     private static final float zoomTargetScale = TARGET / BASE;
     private static float prevScale = 1f;
