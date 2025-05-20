@@ -1,5 +1,8 @@
 # Sodium Zoom
 
+![image](https://github.com/HaHaoooo/SodiumZoom/blob/main/src/main/resources/assets/zoom/icon.png)
+
+
 一个为 Minecraft 1.21.5 & Sodium 渲染器设计的高性能功能与 HUD 信息模组。  
 原生集成于 Sodium 设置界面，Fabric 环境专用。
 
