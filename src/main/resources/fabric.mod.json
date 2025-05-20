@@ -5,6 +5,7 @@
   "name": "Zoom",
   "description": "",
   "authors": ["haha"],
+  "icon": "assets/zoom/icon.png",
   "contact": {},
   "license": "MIT",
   "environment": "*",

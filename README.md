@@ -1,6 +1,6 @@
 # Sodium Zoom
 
-一个为 Minecraft 1.21.5 & Sodium 渲染器设计的高性能丝滑缩放与 HUD 信息模组。  
+一个为 Minecraft 1.21.5 & Sodium 渲染器设计的高性能功能与 HUD 信息模组。  
 原生集成于 Sodium 设置界面，Fabric 环境专用。
 
 ---
@@ -10,16 +10,6 @@
 1. 安装 [Fabric Loader](https://fabricmc.net/) 和 [Sodium](https://modrinth.com/mod/sodium)。
 2. 下载本模组最新版（`zoom-x.x.x.jar`），放入 `.minecraft/mods` 文件夹。
 3. 启动游戏，在**选项 → 视频设置 → Sodium Options → Zoom**页内即可自定义所有设置。
-
----
-
-## 配置
-
-- **缩放按键**：默认 V，可在设置内更改。
-- **缩放速度**：可调节，范围 *0.15f-0.60f*，越小越慢越丝滑。
-- **FPS 显示**：可开关 HUD 显示帧数。
-- **坐标显示**：可开关 HUD 显示坐标。
-- **HUD 颜色**：可选择5种预设颜色。
 
 ---
 
