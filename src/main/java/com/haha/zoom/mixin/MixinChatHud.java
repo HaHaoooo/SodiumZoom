@@ -1,6 +1,6 @@
 package com.haha.zoom.mixin;
 
-import com.haha.zoom.client.gui.ZoomOptionPage;
+import com.haha.zoom.data.ZoomStorage;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.ChatHud;
@@ -49,7 +49,7 @@ public abstract class MixinChatHud {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void onRender(DrawContext context, int currentTick, int mouseX, int mouseY, boolean focused, CallbackInfo ci) {
         if (this.isChatHidden()) return;
-        if (!ZoomOptionPage.storage.getData().useBetterChat) return;
+        if (!ZoomStorage.data.useBetterChat) return;
 
         int visibleLines = this.getVisibleLineCount();
         int msgCount = this.visibleMessages.size();

@@ -1,6 +1,8 @@
 package com.haha.zoom.client;
 
 import com.haha.zoom.client.hud.InfoHud;
+import com.haha.zoom.client.key.KeyMonitor;
+import com.haha.zoom.data.ZoomStorage;
 import com.haha.zoom.manager.ZoomManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -19,7 +21,7 @@ public class ZoomClient implements ClientModInitializer {
     public void onInitializeClient() {
         HudLayerRegistrationCallback.EVENT.register((registrar) -> registrar.addLayer(IdentifiedLayer.of(Identifier.of(MOD_ID, "info_hud"), new InfoHud())));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            ZoomManager.setZooming(ZoomManager.ZOOM.isPressed());
+            ZoomManager.setZooming(KeyMonitor.isKeyDown(ZoomStorage.data.zoomKeyCode));
             ZoomManager.tick();
         });
     }

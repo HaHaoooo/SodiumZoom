@@ -4,7 +4,7 @@ import net.caffeinemc.mods.sodium.client.gui.options.storage.OptionStorage;
 
 public class ZoomStorage implements OptionStorage<ZoomData> {
 
-    private final ZoomData data = new ZoomData();
+    public static final ZoomData data = new ZoomData();
 
     @Override
     public ZoomData getData() {

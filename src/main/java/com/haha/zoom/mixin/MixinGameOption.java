@@ -1,6 +1,6 @@
 package com.haha.zoom.mixin;
 
-import com.haha.zoom.client.gui.ZoomOptionPage;
+import com.haha.zoom.data.ZoomStorage;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
@@ -12,7 +12,7 @@ public class MixinGameOption {
 
     @ModifyReturnValue(method = "getGamma", at = @At(value = "RETURN"))
     private SimpleOption<Double> forceBright(SimpleOption<Double> original){
-        if (ZoomOptionPage.storage.getData().fullBright) return new SimpleOption<>("options.gamma", SimpleOption.emptyTooltip(), (optionText, value) -> null, SimpleOption.DoubleSliderCallbacks.INSTANCE, 16.0, (value) -> {});
-        return original;
+        if (!ZoomStorage.data.fullBright) return original;
+        return new SimpleOption<>("options.gamma", SimpleOption.emptyTooltip(), (optionText, value) -> null, SimpleOption.DoubleSliderCallbacks.INSTANCE, 16.0, (value) -> {});
     }
 }

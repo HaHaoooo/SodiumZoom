@@ -1,17 +1,8 @@
 package com.haha.zoom.manager;
 
-import com.haha.zoom.client.gui.ZoomOptionPage;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import org.lwjgl.glfw.GLFW;
+import com.haha.zoom.data.ZoomStorage;
 
 public class ZoomManager {
-    public static KeyBinding ZOOM = new KeyBinding(
-            "key.haha.zoom",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_V,
-            "category.haha"
-    );
     public static final float TARGET = 22f;
     public static final float BASE = 70f; // 70为原版基础FOV
     private static final float zoomTargetScale = TARGET / BASE;
@@ -23,7 +14,7 @@ public class ZoomManager {
     public static void tick() {
         float goal = zooming ? zoomTargetScale : 1f;
         prevScale = nextScale;
-        float speed = ZoomOptionPage.storage.getData().zoomSpeed;
+        float speed = ZoomStorage.data.zoomSpeed;
         nextScale += (goal - nextScale) * speed;
         if (Math.abs(nextScale - goal) < 0.001f) nextScale = goal;
     }

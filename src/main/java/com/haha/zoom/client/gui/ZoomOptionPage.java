@@ -2,17 +2,14 @@ package com.haha.zoom.client.gui;
 
 import com.google.common.collect.ImmutableList;
 import com.haha.zoom.Zoom;
-import com.haha.zoom.client.hud.InfoHud;
 import com.haha.zoom.control.ColorControl;
 import com.haha.zoom.control.FloatSliderControl;
 import com.haha.zoom.control.KeyBindControl;
 import com.haha.zoom.data.ZoomData;
 import com.haha.zoom.data.ZoomStorage;
-import com.haha.zoom.manager.ZoomManager;
 import net.caffeinemc.mods.sodium.client.gui.options.*;
 import net.caffeinemc.mods.sodium.client.gui.options.binding.OptionBinding;
 import net.caffeinemc.mods.sodium.client.gui.options.control.TickBoxControl;
-import net.minecraft.client.option.KeyBinding;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -22,8 +19,6 @@ import java.util.List;
 
 public class ZoomOptionPage {
 
-    public static final ZoomStorage storage = new ZoomStorage();
-
     public static OptionPage create() {
         List<OptionGroup> groups = new ArrayList<>();
         groups.add(OptionGroup.createBuilder().add(
@@ -32,7 +27,17 @@ public class ZoomOptionPage {
                                         .setTooltip(getToolTip("show_fps"))
                                         .setEnabled(() -> true)
                                         .setControl(TickBoxControl::new)
-                                        .setBinding((opts, value) -> storage.getData().showFps = value, opts -> storage.getData().showFps)
+                                        .setBinding(new OptionBinding<>() {
+                                            @Override
+                                            public void setValue(ZoomData zoomData, Boolean aBoolean) {
+                                                zoomData.showFps = aBoolean;
+                                            }
+
+                                            @Override
+                                            public Boolean getValue(ZoomData zoomData) {
+                                                return zoomData.showFps;
+                                            }
+                                        })
                                         .build()
                         )
                         .build()
@@ -43,7 +48,17 @@ public class ZoomOptionPage {
                                         .setTooltip(getToolTip("show_coord"))
                                         .setEnabled(() -> true)
                                         .setControl(TickBoxControl::new)
-                                        .setBinding((opts, value) -> storage.getData().showCoordinate = value, opts -> storage.getData().showCoordinate)
+                                        .setBinding(new OptionBinding<>() {
+                                            @Override
+                                            public void setValue(ZoomData zoomData, Boolean aBoolean) {
+                                                zoomData.showCoordinate = aBoolean;
+                                            }
+
+                                            @Override
+                                            public Boolean getValue(ZoomData zoomData) {
+                                                return zoomData.showCoordinate;
+                                            }
+                                        })
                                         .build()
                         )
                         .build()
@@ -54,7 +69,17 @@ public class ZoomOptionPage {
                                         .setTooltip(getToolTip("better_chat"))
                                         .setEnabled(() -> true)
                                         .setControl(TickBoxControl::new)
-                                        .setBinding((opts, value) -> storage.getData().useBetterChat = value, opts -> storage.getData().useBetterChat)
+                                        .setBinding(new OptionBinding<>() {
+                                            @Override
+                                            public void setValue(ZoomData zoomData, Boolean aBoolean) {
+                                                zoomData.useBetterChat = aBoolean;
+                                            }
+
+                                            @Override
+                                            public Boolean getValue(ZoomData zoomData) {
+                                                return zoomData.useBetterChat;
+                                            }
+                                        })
                                         .build()
                         )
                         .build()
@@ -65,7 +90,17 @@ public class ZoomOptionPage {
                                         .setTooltip(getToolTip("full_bright"))
                                         .setEnabled(() -> true)
                                         .setControl(TickBoxControl::new)
-                                        .setBinding((opts, value) -> storage.getData().fullBright = value, opts -> storage.getData().fullBright)
+                                        .setBinding(new OptionBinding<>() {
+                                            @Override
+                                            public void setValue(ZoomData zoomData, Boolean aBoolean) {
+                                                zoomData.fullBright = aBoolean;
+                                            }
+
+                                            @Override
+                                            public Boolean getValue(ZoomData zoomData) {
+                                                return zoomData.fullBright;
+                                            }
+                                        })
                                         .build()
                         )
                         .build()
@@ -76,27 +111,37 @@ public class ZoomOptionPage {
                                         .setTooltip(getToolTip("zoom_speed"))
                                         .setEnabled(() -> true)
                                         .setControl(FloatSliderControl::new)
-                                        .setBinding((opt, value) -> storage.getData().zoomSpeed = value, opt -> storage.getData().zoomSpeed)
+                                        .setBinding(new OptionBinding<>() {
+                                            @Override
+                                            public void setValue(ZoomData zoomData, Float aFloat) {
+                                                zoomData.zoomSpeed = aFloat;
+                                            }
+
+                                            @Override
+                                            public Float getValue(ZoomData zoomData) {
+                                                return zoomData.zoomSpeed;
+                                            }
+                                        })
                                         .build()
                         )
                         .build()
         );
 
         groups.add(OptionGroup.createBuilder().add(
-                                OptionImpl.createBuilder(KeyBinding.class, new ZoomStorage())
+                                OptionImpl.createBuilder(Integer.class, new ZoomStorage())
                                         .setName(getName("zoom_key"))
                                         .setTooltip(getToolTip("zoom_key"))
                                         .setEnabled(() -> true)
                                         .setControl(KeyBindControl::new)
                                         .setBinding(new OptionBinding<>() {
                                             @Override
-                                            public void setValue(ZoomData haHaData, KeyBinding keyBinding) {
-                                                ZoomManager.ZOOM = keyBinding;
+                                            public void setValue(ZoomData zoomData, Integer integer) {
+                                                zoomData.zoomKeyCode = integer;
                                             }
 
                                             @Override
-                                            public KeyBinding getValue(ZoomData zoomData) {
-                                                return ZoomManager.ZOOM;
+                                            public Integer getValue(ZoomData zoomData) {
+                                                return zoomData.zoomKeyCode;
                                             }
                                         })
                                         .build()
@@ -113,12 +158,12 @@ public class ZoomOptionPage {
                                         .setBinding(new OptionBinding<>() {
                                             @Override
                                             public void setValue(ZoomData zoomData, Color color) {
-                                                InfoHud.COLOR = color;
+                                               zoomData.color = color;
                                             }
 
                                             @Override
                                             public Color getValue(ZoomData zoomData) {
-                                                return InfoHud.COLOR;
+                                                return zoomData.color;
                                             }
                                         })
                                         .build()
