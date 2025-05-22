@@ -12,7 +12,7 @@ public class MixinGameOption {
 
     @ModifyReturnValue(method = "getGamma", at = @At(value = "RETURN"))
     private SimpleOption<Double> forceBright(SimpleOption<Double> original){
-        if (!ZoomStorage.data.fullBright) return original;
+        if (!ZoomStorage.getInstance().getData().isFullBright()) return original;
         return new SimpleOption<>("options.gamma", SimpleOption.emptyTooltip(), (optionText, value) -> null, SimpleOption.DoubleSliderCallbacks.INSTANCE, 16.0, (value) -> {});
     }
 }

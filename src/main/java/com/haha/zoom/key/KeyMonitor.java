@@ -1,4 +1,4 @@
-package com.haha.zoom.client.key;
+package com.haha.zoom.key;
 
 import net.minecraft.client.MinecraftClient;
 import org.lwjgl.glfw.GLFW;

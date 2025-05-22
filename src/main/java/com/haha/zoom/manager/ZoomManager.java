@@ -14,7 +14,7 @@ public class ZoomManager {
     public static void tick() {
         float goal = zooming ? zoomTargetScale : 1f;
         prevScale = nextScale;
-        float speed = ZoomStorage.data.zoomSpeed;
+        float speed = ZoomStorage.getInstance().getData().getZoomSpeed();
         nextScale += (goal - nextScale) * speed;
         if (Math.abs(nextScale - goal) < 0.001f) nextScale = goal;
     }

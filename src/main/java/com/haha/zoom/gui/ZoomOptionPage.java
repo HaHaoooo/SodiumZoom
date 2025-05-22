@@ -1,7 +1,7 @@
-package com.haha.zoom.client.gui;
+package com.haha.zoom.gui;
 
 import com.google.common.collect.ImmutableList;
-import com.haha.zoom.Zoom;
+import com.haha.zoom.ZoomClient;
 import com.haha.zoom.control.ColorControl;
 import com.haha.zoom.control.FloatSliderControl;
 import com.haha.zoom.control.KeyBindControl;
@@ -30,12 +30,11 @@ public class ZoomOptionPage {
                                         .setBinding(new OptionBinding<>() {
                                             @Override
                                             public void setValue(ZoomData zoomData, Boolean aBoolean) {
-                                                zoomData.showFps = aBoolean;
+                                                zoomData.setShowFps(aBoolean);
                                             }
-
                                             @Override
                                             public Boolean getValue(ZoomData zoomData) {
-                                                return zoomData.showFps;
+                                                return zoomData.isShowFps();
                                             }
                                         })
                                         .build()
@@ -51,12 +50,11 @@ public class ZoomOptionPage {
                                         .setBinding(new OptionBinding<>() {
                                             @Override
                                             public void setValue(ZoomData zoomData, Boolean aBoolean) {
-                                                zoomData.showCoordinate = aBoolean;
+                                                zoomData.setShowCoordinate(aBoolean);
                                             }
-
                                             @Override
                                             public Boolean getValue(ZoomData zoomData) {
-                                                return zoomData.showCoordinate;
+                                                return zoomData.isShowCoordinate();
                                             }
                                         })
                                         .build()
@@ -72,12 +70,11 @@ public class ZoomOptionPage {
                                         .setBinding(new OptionBinding<>() {
                                             @Override
                                             public void setValue(ZoomData zoomData, Boolean aBoolean) {
-                                                zoomData.useBetterChat = aBoolean;
+                                                zoomData.setUseBetterChat(aBoolean);
                                             }
-
                                             @Override
                                             public Boolean getValue(ZoomData zoomData) {
-                                                return zoomData.useBetterChat;
+                                                return zoomData.isUseBetterChat();
                                             }
                                         })
                                         .build()
@@ -93,12 +90,11 @@ public class ZoomOptionPage {
                                         .setBinding(new OptionBinding<>() {
                                             @Override
                                             public void setValue(ZoomData zoomData, Boolean aBoolean) {
-                                                zoomData.fullBright = aBoolean;
+                                                zoomData.setFullBright(aBoolean);
                                             }
-
                                             @Override
                                             public Boolean getValue(ZoomData zoomData) {
-                                                return zoomData.fullBright;
+                                                return zoomData.isFullBright();
                                             }
                                         })
                                         .build()
@@ -114,19 +110,17 @@ public class ZoomOptionPage {
                                         .setBinding(new OptionBinding<>() {
                                             @Override
                                             public void setValue(ZoomData zoomData, Float aFloat) {
-                                                zoomData.zoomSpeed = aFloat;
+                                                zoomData.setZoomSpeed(aFloat);
                                             }
-
                                             @Override
                                             public Float getValue(ZoomData zoomData) {
-                                                return zoomData.zoomSpeed;
+                                                return zoomData.getZoomSpeed();
                                             }
                                         })
                                         .build()
                         )
                         .build()
         );
-
         groups.add(OptionGroup.createBuilder().add(
                                 OptionImpl.createBuilder(Integer.class, new ZoomStorage())
                                         .setName(getName("zoom_key"))
@@ -136,19 +130,17 @@ public class ZoomOptionPage {
                                         .setBinding(new OptionBinding<>() {
                                             @Override
                                             public void setValue(ZoomData zoomData, Integer integer) {
-                                                zoomData.zoomKeyCode = integer;
+                                                zoomData.setZoomKeyCode(integer);
                                             }
-
                                             @Override
                                             public Integer getValue(ZoomData zoomData) {
-                                                return zoomData.zoomKeyCode;
+                                                return zoomData.getZoomKeyCode();
                                             }
                                         })
                                         .build()
                         )
                         .build()
         );
-
         groups.add(OptionGroup.createBuilder().add(
                                 OptionImpl.createBuilder(Color.class, new ZoomStorage())
                                         .setName(getName("color"))
@@ -158,12 +150,11 @@ public class ZoomOptionPage {
                                         .setBinding(new OptionBinding<>() {
                                             @Override
                                             public void setValue(ZoomData zoomData, Color color) {
-                                               zoomData.color = color;
+                                               zoomData.setColor(color);
                                             }
-
                                             @Override
                                             public Color getValue(ZoomData zoomData) {
-                                                return zoomData.color;
+                                                return zoomData.getColor();
                                             }
                                         })
                                         .build()
@@ -175,11 +166,11 @@ public class ZoomOptionPage {
     }
 
     private static Text getName(String name){
-        return Text.translatable(Identifier.of(Zoom.MOD_ID, name).toTranslationKey());
+        return Text.translatable(Identifier.of(ZoomClient.MOD_ID, name).toTranslationKey());
     }
 
     private static Text getToolTip(String name){
-        return Text.translatable(Identifier.of(Zoom.MOD_ID, name + ".desc").toTranslationKey());
+        return Text.translatable(Identifier.of(ZoomClient.MOD_ID, name + ".desc").toTranslationKey());
     }
 }
 

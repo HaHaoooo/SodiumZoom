@@ -49,7 +49,7 @@ public abstract class MixinChatHud {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void onRender(DrawContext context, int currentTick, int mouseX, int mouseY, boolean focused, CallbackInfo ci) {
         if (this.isChatHidden()) return;
-        if (!ZoomStorage.data.useBetterChat) return;
+        if (!ZoomStorage.getInstance().getData().isUseBetterChat()) return;
 
         int visibleLines = this.getVisibleLineCount();
         int msgCount = this.visibleMessages.size();

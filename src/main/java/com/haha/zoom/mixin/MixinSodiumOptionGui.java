@@ -1,6 +1,6 @@
 package com.haha.zoom.mixin;
 
-import com.haha.zoom.client.gui.ZoomOptionPage;
+import com.haha.zoom.gui.ZoomOptionPage;
 import net.caffeinemc.mods.sodium.client.gui.SodiumOptionsGUI;
 import net.caffeinemc.mods.sodium.client.gui.options.OptionPage;
 import org.spongepowered.asm.mixin.Final;

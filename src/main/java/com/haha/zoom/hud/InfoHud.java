@@ -1,6 +1,6 @@
-package com.haha.zoom.client.hud;
+package com.haha.zoom.hud;
 
-import com.haha.zoom.Zoom;
+import com.haha.zoom.ZoomClient;
 import com.haha.zoom.data.ZoomStorage;
 import net.fabricmc.fabric.api.client.rendering.v1.IdentifiedLayer;
 import net.minecraft.client.MinecraftClient;
@@ -13,7 +13,7 @@ public class InfoHud implements IdentifiedLayer {
 
     @Override
     public Identifier id() {
-        return Identifier.of(Zoom.MOD_ID, "info_hud");
+        return Identifier.of(ZoomClient.MOD_ID, "info_hud");
     }
 
     @Override
@@ -24,14 +24,15 @@ public class InfoHud implements IdentifiedLayer {
 
         int y = 2;
         int space = 10;
-        if (ZoomStorage.data.showFps) {
+        int color = ZoomStorage.getInstance().getData().getColor().getRGB();
+        if (ZoomStorage.getInstance().getData().isShowFps()) {
             String fps = "[FPS] " + client.getCurrentFps();
-            context.drawText(client.textRenderer, Text.literal(fps), 2, y, ZoomStorage.data.color.getRGB(), true);
+            context.drawText(client.textRenderer, Text.literal(fps), 2, y, color, true);
             y += space;
         }
-        if (ZoomStorage.data.showCoordinate){
+        if (ZoomStorage.getInstance().getData().isShowCoordinate()){
             String coord = "[" + (int) client.player.getX() + ", " + (int) client.player.getY() + ", " + (int) client.player.getZ() + "]";
-            context.drawText(client.textRenderer, Text.literal(coord), 2, y, ZoomStorage.data.color.getRGB(), true);
+            context.drawText(client.textRenderer, Text.literal(coord), 2, y, color, true);
         }
     }
 }

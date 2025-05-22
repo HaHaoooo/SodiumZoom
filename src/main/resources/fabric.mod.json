@@ -11,10 +11,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.haha.zoom.client.ZoomClient"
-    ],
-    "main": [
-      "com.haha.zoom.Zoom"
+      "com.haha.zoom.ZoomClient"
     ]
   },
   "mixins": [
