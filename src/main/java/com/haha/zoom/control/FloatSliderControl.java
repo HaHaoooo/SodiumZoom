@@ -58,6 +58,7 @@ public class FloatSliderControl implements Control<Float> {
             this.thumbPosition = getThumbPositionForValue(option.getValue());
         }
 
+        @Override
         public void render(DrawContext graphics, int mouseX, int mouseY, float delta) {
             int sliderX = this.sliderBounds.getX();
             int sliderY = this.sliderBounds.getY();

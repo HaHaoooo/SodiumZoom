@@ -10,5 +10,7 @@
   "zoom.zoom_speed": "缩放速度",
   "zoom.zoom_speed.desc": "按V键进行缩放",
   "zoom.zoom_key": "缩放键",
-  "zoom.zoom_key.desc": "改编缩放键的键位"
+  "zoom.zoom_key.desc": "改编缩放键的键位",
+  "zoom.color": "调色盘",
+  "zoom.color.desc": "选择合适的颜色作为你的Hud的主颜色"
 }

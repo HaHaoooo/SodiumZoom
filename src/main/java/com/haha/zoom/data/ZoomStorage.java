@@ -1,63 +1,72 @@
 package com.haha.zoom.data;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.haha.zoom.ZoomClient;
 import net.caffeinemc.mods.sodium.client.gui.options.storage.OptionStorage;
-import net.caffeinemc.mods.sodium.client.services.PlatformRuntimeInformation;
 import net.caffeinemc.mods.sodium.client.util.FileUtil;
+import net.minecraft.client.MinecraftClient;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ZoomStorage implements OptionStorage<ZoomData> {
 
-    private static final Gson GSON = (new GsonBuilder()).setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).setPrettyPrinting().excludeFieldsWithModifiers(2).create();
-    private final ZoomData data = new ZoomData();
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    public ZoomStorage() {
-        Path path = PlatformRuntimeInformation.getInstance().getConfigDirectory().resolve("sodium-zoom.json");
-        if (!Files.exists(path)) {
-            save(); // 写入默认配置
-        }
-    }
+    private final ZoomData data = loadFromDisk();
 
     @Override
     public void save() {
-        Path path = PlatformRuntimeInformation.getInstance().getConfigDirectory().resolve("sodium-zoom.json");
         try {
-            FileUtil.writeTextRobustly(GSON.toJson(data), path);
+            writeToDisk(data);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        ZoomClient.logger().info("Flushed changes to Sodium Zoom configuration");
     }
 
     @Override
     public ZoomData getData() {
-        Path path = PlatformRuntimeInformation.getInstance().getConfigDirectory().resolve("sodium-zoom.json");
-        if (path.toFile().exists()) {
-            try {
-                String json = Files.readString(path);
-                ZoomData loaded = GSON.fromJson(json, ZoomData.class);
-                if (loaded != null) {
-                    copyData(loaded, data);
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return data;
+        return this.data;
     }
 
-    private void copyData(ZoomData src, ZoomData dest) {
-        dest.setShowFps(src.isShowFps());
-        dest.setShowCoordinate(src.isShowCoordinate());
-        dest.setUseBetterChat(src.isUseBetterChat());
-        dest.setFullBright(src.isFullBright());
-        dest.setZoomSpeed(src.getZoomSpeed());
-        dest.setZoomKeyCode(src.getZoomKeyCode());
-        dest.setColor(src.getColor());
+    private static Path getConfigPath() {
+        return MinecraftClient.getInstance().runDirectory.toPath().resolve("config").resolve("sodium-zoom.json");
+    }
+
+    private static ZoomData loadFromDisk() {
+        Path path = getConfigPath();
+        ZoomData config;
+        if (Files.exists(path)) {
+            try (FileReader reader = new FileReader(path.toFile())) {
+                config = GSON.fromJson(reader, ZoomData.class);
+            } catch (IOException e) {
+                throw new RuntimeException("Could not parse config", e);
+            }
+        } else {
+            config = new ZoomData();
+        }
+
+        try {
+            writeToDisk(config);
+            return config;
+        } catch (IOException e) {
+            throw new RuntimeException("Couldn't update config file", e);
+        }
+    }
+
+    private static void writeToDisk(ZoomData config) throws IOException {
+        Path path = getConfigPath();
+        Path dir = path.getParent();
+        if (!Files.exists(dir)) {
+            Files.createDirectories(dir);
+        } else if (!Files.isDirectory(dir)) {
+            throw new IOException("Not a directory: " + dir);
+        }
+        FileUtil.writeTextRobustly(GSON.toJson(config), path);
     }
 
     private static ZoomStorage instance;

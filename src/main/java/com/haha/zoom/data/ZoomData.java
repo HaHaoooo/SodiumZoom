@@ -11,7 +11,7 @@ public class ZoomData {
     private boolean fullBright;
     private float zoomSpeed;
     private int zoomKeyCode;
-    private Color color;
+    private int color;
 
     public ZoomData() {
         this.showFps = false;
@@ -20,7 +20,7 @@ public class ZoomData {
         this.fullBright = false;
         this.zoomSpeed = 0.25f;
         this.zoomKeyCode = InputUtil.GLFW_KEY_C;
-        this.color = Color.WHITE;
+        this.color = Color.WHITE.getRGB();
     }
 
     public void setShowFps(boolean showFps) {
@@ -41,10 +41,9 @@ public class ZoomData {
     public void setZoomKeyCode(int zoomKeyCode) {
         this.zoomKeyCode = zoomKeyCode;
     }
-    public void setColor(Color color) {
+    public void setColor(int color) {
         this.color = color;
     }
-
     public boolean isShowFps() {
         return showFps;
     }
@@ -63,7 +62,7 @@ public class ZoomData {
     public int getZoomKeyCode() {
         return zoomKeyCode;
     }
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 }

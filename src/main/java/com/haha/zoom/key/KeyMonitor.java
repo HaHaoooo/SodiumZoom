@@ -5,7 +5,11 @@ import org.lwjgl.glfw.GLFW;
 
 public class KeyMonitor {
     public static boolean isKeyDown(int glfwKeyCode) {
-        long windowHandle = MinecraftClient.getInstance().getWindow().getHandle();
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.currentScreen != null) {
+            return false;
+        }
+        long windowHandle = client.getWindow().getHandle();
         return GLFW.glfwGetKey(windowHandle, glfwKeyCode) == GLFW.GLFW_PRESS;
     }
 }

@@ -24,15 +24,15 @@ public class InfoHud implements IdentifiedLayer {
 
         int y = 2;
         int space = 10;
-        int color = ZoomStorage.getInstance().getData().getColor().getRGB();
+        int color = ZoomClient.getColorARGB();
         if (ZoomStorage.getInstance().getData().isShowFps()) {
             String fps = "[FPS] " + client.getCurrentFps();
-            context.drawText(client.textRenderer, Text.literal(fps), 2, y, color, true);
+            context.drawText(client.textRenderer, Text.literal(fps), 2, y, color, false);
             y += space;
         }
         if (ZoomStorage.getInstance().getData().isShowCoordinate()){
             String coord = "[" + (int) client.player.getX() + ", " + (int) client.player.getY() + ", " + (int) client.player.getZ() + "]";
-            context.drawText(client.textRenderer, Text.literal(coord), 2, y, color, true);
+            context.drawText(client.textRenderer, Text.literal(coord), 2, y, color, false);
         }
     }
 }

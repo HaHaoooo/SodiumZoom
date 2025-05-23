@@ -28,7 +28,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Sodium
-    modImplementation ":sodium-fabric-0.6.13+mc1.21.5"
+    modImplementation "caffeine:sodium:fabric-0.6.13+mc1.21.5"
 }
 
 processResources {
